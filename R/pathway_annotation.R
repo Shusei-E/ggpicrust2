@@ -319,15 +319,15 @@ validate_inputs <- function(file, pathway, daa_results_df, ko_to_kegg) {
 #' @param organism KEGG organism code (e.g., 'hsa' for human)
 #' @return Annotated data frame
 #' @noRd
-process_kegg_annotations <- function(df, organism = NULL) {
+process_kegg_annotations <- function(df, organism = NULL, p_adjust_thres = 0.05) {
   if (nrow(df) == 0) {
     stop("Empty data frame provided for KEGG annotation")
   }
   
-  filtered_df <- df[df$p_adjust < 0.05, ]
+  filtered_df <- df[df$p_adjust < p_adjust_thres, ]
   if (nrow(filtered_df) == 0) {
     stop(
-      "No statistically significant biomarkers found (p_adjust < 0.05).\n",
+      "No statistically significant biomarkers found.\n",
       "Consider using a less stringent threshold or reviewing your data."
     )
   }
@@ -545,7 +545,8 @@ pathway_annotation <- function(file = NULL,
                              pathway = NULL,
                              daa_results_df = NULL,
                              ko_to_kegg = FALSE,
-                             organism = NULL) {
+                             organism = NULL,
+                             p_adjust_thres = 0.05) {
   
   # Input validation
   if (is.null(file) && is.null(daa_results_df)) {
@@ -577,7 +578,7 @@ pathway_annotation <- function(file = NULL,
       }
       message("We are connecting to the KEGG database to get the latest results, please wait patiently.")
       message("Processing pathways in chunks...")
-      return(process_kegg_annotations(daa_results_df, organism))
+      return(process_kegg_annotations(daa_results_df, organism, p_adjust_thres))
     }
   }
 }
