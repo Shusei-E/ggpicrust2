@@ -636,5 +636,11 @@ pathway_errorbar <-
           bar_errorbar + p_annotation + patchwork::plot_layout(ncol = 2, widths = c(2.5,  0.2))
       }
     }
-    return(combination_bar_plot)
+    return(list(
+      plot = combination_bar_plot,
+      error_bar_pivot_longer_tibble_summarised_ordered = error_bar_pivot_longer_tibble_summarised_ordered,
+      daa_results_filtered_sub_df = daa_results_filtered_sub_df,
+      pathway_class_plot_df = pathway_class_plot_df,
+      daa_results_filtered_sub_df = daa_results_filtered_sub_df
+    )
   }
