@@ -640,7 +640,6 @@ pathway_errorbar <-
       list(
         plot = combination_bar_plot,
         error_bar_pivot_longer_tibble_summarised_ordered = error_bar_pivot_longer_tibble_summarised_ordered,
-        daa_results_filtered_sub_df = daa_results_filtered_sub_df,
         pathway_class_plot_df = pathway_class_plot_df,
         daa_results_filtered_sub_df = daa_results_filtered_sub_df
       )
