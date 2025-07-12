@@ -1,7 +1,7 @@
 Package: ggpicrust2
 Type: Package
 Title: Make 'PICRUSt2' Output Analysis and Visualization Easier
-Version: 2.3.2
+Version: 2.3.2.2
 Authors@R: c(
     person("Chen", "Yang", email = "cafferychen7850@gmail.com", role = c("aut", "cre")),
     person("Liangliang", "Zhang", email = "lxz716@case.edu ", role = "aut"))
@@ -11,7 +11,7 @@ URL: https://github.com/cafferychen777/ggpicrust2, https://cafferyang.com/ggpicr
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.2.2
+RoxygenNote: 7.3.2
 Imports:
     aplot,
     dplyr,
