@@ -503,8 +503,11 @@ pathway_errorbar <-
       )
 
     for (i in daa_results_filtered_sub_df$feature){
-      mean <- error_bar_pivot_longer_tibble_summarised_ordered[error_bar_pivot_longer_tibble_summarised_ordered$name %in% i,]$mean
-      daa_results_filtered_sub_df[daa_results_filtered_sub_df$feature==i,]$log_2_fold_change <- log2(mean[1]/mean[2])
+      mean <- error_bar_pivot_longer_tibble_summarised_ordered[error_bar_pivot_longer_tibble_summarised_ordered$name %in% i ,] |> 
+        dplyr::arrange(group) |> 
+        dplyr::pull(mean)
+      # First row is the control
+      daa_results_filtered_sub_df[daa_results_filtered_sub_df$feature==i,]$log_2_fold_change <- log2(mean[2]/mean[1])
     }
     daa_results_filtered_sub_df$feature <- factor(daa_results_filtered_sub_df$feature,levels = rev(daa_results_filtered_sub_df$feature))
     p_values_bar <- daa_results_filtered_sub_df %>%
